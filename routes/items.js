@@ -3,10 +3,12 @@ const router = new express.Router()
 const ExpressError = require("../expressError")
 const items = require('../fakeDb')
 
+//route to get all items
 router.get('/', function (req, res) {
     res.json({ items });
 })
 
+//route to create a new item, add name + price
 router.post('/', function (req, res, next) {
     try {
         if (!req.body.name) throw new ExpressError("Missing data", 400);
@@ -18,9 +20,11 @@ router.post('/', function (req, res, next) {
     }
 })
 
+//route to get an item
 router.get('/:name', function (req, res, next) {
     try {
         const foundItem = items.find(item => item.name === req.params.name);
+        //testing if item exist
         if (foundItem === undefined) {
             throw new ExpressError("Item not found", 404)
         }
@@ -30,6 +34,7 @@ router.get('/:name', function (req, res, next) {
     }
 });
 
+//route to change name or price of item
 router.patch('/:name', function (req, res, next) {
     try {
         const foundItem = items.find(item => item.name === req.params.name);
@@ -44,6 +49,7 @@ router.patch('/:name', function (req, res, next) {
     }
 });
 
+//route to delete item
 router.delete('/:name', function (req, res, next) {
     try {
         const foundItem = items.find(item => item.name === req.params.name);
