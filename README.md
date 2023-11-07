@@ -36,3 +36,4 @@ Here is what a sample response looks like:
 **{message: “Deleted”}**
 
 Please make use of the [Express Router](https://expressjs.com/en/guide/routing.html#express.Router).
+Warning: STOP and make sure your routes are tested! Make sure you have tested all of these routes with Jest and Supertest.
